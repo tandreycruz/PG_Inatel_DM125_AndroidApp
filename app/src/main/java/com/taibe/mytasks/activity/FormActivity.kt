@@ -3,12 +3,19 @@ package com.taibe.mytasks.activity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import com.taibe.mytasks.R
 import com.taibe.mytasks.databinding.ActivityFormBinding
+import com.taibe.mytasks.entity.Task
+import com.taibe.mytasks.service.TaskService
 
 class FormActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityFormBinding
+
+    private val taskService: TaskService by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,9 +37,18 @@ class FormActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun initComponents(){
+    private fun initComponents() {
         binding.btSave.setOnClickListener {
-            finish()
+            binding.layoutTitle.error = null
+
+            if (binding.etTitle.text.isNullOrEmpty()) {
+                binding.layoutTitle.error = ContextCompat.getString(this, R.string.title_required)
+            } else {
+                val task = Task(title = binding.etTitle.text.toString())
+                taskService.create(task).observe(this) { response ->
+                    finish()
+                }
+            }
         }
     }
 }

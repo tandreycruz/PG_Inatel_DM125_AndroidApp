@@ -104,27 +104,37 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, FormActivity::class.java))
         }
 
-        //Test Main Thread - IO Thread
-        //CoroutineScope(Dispatchers.IO).launch {
-        //    Thread.sleep(10000)
-        //
-        //    withContext(Dispatchers.Main) {
-        //        supportActionBar?.title = "Teste"
-        //    }
-        //}
-
         ItemTouchHelper(TouchCallback(object : SwipeListener{
             override fun onSwipe(position: Int) {
 
-                adapter.getItem(position).id?.let {
-                    taskService.delete(it).observe(this@MainActivity) { response ->
-                        if (response.error) {
-                            adapter.notifyItemChanged(position)
-                        } else {
-                            adapter.removeItem(position)
+                val task = adapter.getItem(position)
+
+                AlertDialog.Builder(this@MainActivity)
+                    .setTitle("Excluir tarefa")
+                    .setMessage("Tem certeza que deseja excluir a tarefa \"${task.title}\"?")
+                    .setPositiveButton("Excluir") { _, _ ->
+
+                        task.id?.let { id ->
+                            taskService.delete(id).observe(this@MainActivity) { response ->
+                                if (response.error) {
+                                    adapter.notifyItemChanged(position)
+                                    AlertDialog.Builder(this@MainActivity)
+                                        .setMessage("Erro ao excluir a tarefa.")
+                                        .setNeutralButton(android.R.string.ok, null)
+                                        .show()
+                                } else {
+                                    adapter.removeItem(position)
+                                }
+                            }
                         }
                     }
-                }
+                    .setNegativeButton("Cancelar") { _, _ ->
+                        adapter.notifyItemChanged(position)
+                    }
+                    .setOnCancelListener {
+                        adapter.notifyItemChanged(position)
+                    }
+                    .show()
             }
         })).attachToRecyclerView(binding.rvMain)
 

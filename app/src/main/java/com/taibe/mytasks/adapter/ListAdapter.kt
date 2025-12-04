@@ -12,8 +12,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.taibe.mytasks.R
 import com.taibe.mytasks.databinding.ListItemBinding
 import com.taibe.mytasks.entity.Task
+import com.taibe.mytasks.listener.ClickListener
 
-class ListAdapter(private val context: Context, private val emptyMessage: TextView) : RecyclerView.Adapter<ItemViewHolder>() {
+class ListAdapter(
+    private val context: Context,
+    private val emptyMessage: TextView,
+    private val listener: ClickListener) : RecyclerView.Adapter<ItemViewHolder>() {
 
     private val items = mutableListOf<Task>()
 
@@ -27,7 +31,7 @@ class ListAdapter(private val context: Context, private val emptyMessage: TextVi
             false
         )
 
-        return ItemViewHolder(binding)
+        return ItemViewHolder(binding, listener)
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {

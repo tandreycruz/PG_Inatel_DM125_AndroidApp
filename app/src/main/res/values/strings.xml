@@ -6,7 +6,22 @@
     <string name="date">Data</string>
     <string name="time">Hora</string>
     <string name="save">Salvar</string>
+
     <string name="title_required">Título é obrigatório</string>
+
     <string name="server_error">Não foi possível conectar ao servidor</string>
     <string name="empty_list">Não existem tarefas cadastradas.\nClique no botão abaixo para cadastrar uma nova tarefa.</string>
+
+    <string name="permission">Permissões</string>
+    <string name="notification_permission_rationale">O aplicativo irá enviar notificações para você quando houver tarefas pendentes.</string>
+    
+    <string name="preferences">Configurações</string>
+    <string name="daily_notification">Notificações diárias</string>
+    <string name="daily_notification_on">Você receberá uma notificação diária.</string>
+    <string name="daily_notification_off">Você não receberá a notificação diária.</string>
+
+    <string name="mark_completed">Marcar como concluída</string>
+
+    <string name="create_error">Não foi possível criar a tarefa.</string>
+    <string name="update_error">Não foi possível atualizar a tarefa</string>
 </resources>

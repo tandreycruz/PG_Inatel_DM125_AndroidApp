@@ -1,5 +1,6 @@
 package com.taibe.mytasks.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
@@ -42,6 +43,11 @@ class FormActivity : AppCompatActivity() {
             binding.etDescription.setText(task.description)
             binding.etDate.setText(task.formatDate())
             binding.etTime.setText(task.formatTime())
+        }
+
+        intent.extras?.getString(Intent.EXTRA_TEXT)?.let { text ->
+            binding.etTitle.setText(text)
+            supportActionBar?.setDisplayHomeAsUpEnabled(false)
         }
 
         initComponents()

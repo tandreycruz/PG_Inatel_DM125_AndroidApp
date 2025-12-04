@@ -104,6 +104,15 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, FormActivity::class.java))
         }
 
+        //Test Main Thread - IO Thread
+        //CoroutineScope(Dispatchers.IO).launch {
+        //    Thread.sleep(10000)
+        //
+        //    withContext(Dispatchers.Main) {
+        //        supportActionBar?.title = "Teste"
+        //    }
+        //}
+
         ItemTouchHelper(TouchCallback(object : SwipeListener{
             override fun onSwipe(position: Int) {
 

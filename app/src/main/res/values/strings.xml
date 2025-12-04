@@ -24,4 +24,14 @@
 
     <string name="create_error">Não foi possível criar a tarefa.</string>
     <string name="update_error">Não foi possível atualizar a tarefa</string>
+
+    <string name="email">E-mail</string>
+    <string name="password">Senha</string>
+    <string name="login">Login</string>
+    <string name="logout">Logout</string>
+    <string name="create_account">Criar conta</string>
+    <string name="empty_email">Preencha o e-mail</string>
+    <string name="empty_password">Preencha a senha</string>
+    <string name="account_created_fail">Não foi possível criar a conta</string>
+    <string name="login_fail">Não foi possível fazer o login</string>
 </resources>

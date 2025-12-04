@@ -3,4 +3,8 @@
     <item
         android:id="@+id/preferences"
         android:title="@string/preferences" />
+
+    <item
+        android:id="@+id/logout"
+        android:title="@string/logout" />
 </menu>

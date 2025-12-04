@@ -56,6 +56,7 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.messaging)
+    implementation(libs.firebase.auth)
     implementation(libs.preference.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

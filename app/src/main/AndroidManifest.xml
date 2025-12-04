@@ -15,15 +15,16 @@
         android:theme="@style/Theme.MyTasks"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".activity.LoginActivity"
             android:exported="true"
-            android:theme="@style/Theme.MyTasks">
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.FormActivity" />
         <activity
             android:name=".activity.PreferenceActivity"

@@ -11,4 +11,14 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory android:title="@string/date_format_category">
+
+        <ListPreference
+            android:key="date_format"
+            android:title="@string/date_format_title"
+            android:entries="@array/date_format_entries"
+            android:entryValues="@array/date_format_values"
+            android:defaultValue="numeric" />
+    </PreferenceCategory>
+
 </androidx.preference.PreferenceScreen>

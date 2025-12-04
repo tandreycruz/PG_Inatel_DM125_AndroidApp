@@ -19,6 +19,17 @@
     <string name="daily_notification">Notificações diárias</string>
     <string name="daily_notification_on">Você receberá uma notificação diária.</string>
     <string name="daily_notification_off">Você não receberá a notificação diária.</string>
+    <string name="date_format_category">Formato da data</string>
+    <string name="date_format_title">Escolha o formato da data</string>
+    <string-array name="date_format_entries">
+        <item>01/01/2025</item>
+        <item>01 de janeiro de 2025</item>
+    </string-array>
+
+    <string-array name="date_format_values">
+        <item>numeric</item>
+        <item>textual</item>
+    </string-array>
 
     <string name="mark_completed">Marcar como concluída</string>
 

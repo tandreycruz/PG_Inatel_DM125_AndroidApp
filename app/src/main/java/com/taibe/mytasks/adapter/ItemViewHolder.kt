@@ -1,5 +1,6 @@
 package com.taibe.mytasks.adapter
 
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.RecyclerView
 import com.taibe.mytasks.R
 import com.taibe.mytasks.databinding.ListItemBinding
@@ -11,8 +12,13 @@ class ItemViewHolder(
     private val listener: ClickListener
 ) : RecyclerView.ViewHolder(binding.root) {
     fun setData(task: Task) {
+        val preferences = PreferenceManager.getDefaultSharedPreferences(binding.root.context)
+        val dateFormat = preferences.getString("date_format", "numeric") ?: "numeric"
+
+
         binding.tvTitle.text = task.title
-        binding.tvDate.text = task.formatDateTime()
+        binding.tvDate.text = task.formatDateTime(dateFormat)
+
 
         if (task.completed) {
             binding.tvTitle.setBackgroundResource(R.color.green)

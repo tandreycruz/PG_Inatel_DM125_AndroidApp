@@ -154,7 +154,7 @@ class FormActivity : AppCompatActivity() {
                 day
             )
 
-            datePicker.datePicker.minDate = System.currentTimeMillis()
+            //datePicker.datePicker.minDate = System.currentTimeMillis()
             datePicker.show()
         }
     }

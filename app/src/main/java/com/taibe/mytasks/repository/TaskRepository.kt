@@ -17,6 +17,9 @@ interface TaskRepository {
     @GET("/tasks")
     fun list(): Call<List<Task>>
 
+    @GET("/tasks/{id}")
+    fun listDetails(@Path("id") id: Long): Call<Task>
+
     @DELETE("/tasks/{id}")
     fun delete(@Path("id") id: Long): Call<Void>
 

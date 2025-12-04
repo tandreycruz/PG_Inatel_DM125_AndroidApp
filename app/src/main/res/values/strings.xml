@@ -24,6 +24,7 @@
 
     <string name="create_error">Não foi possível criar a tarefa.</string>
     <string name="update_error">Não foi possível atualizar a tarefa</string>
+    <string name="load_error">Erro ao carregar os dados da tarefa.</string>
 
     <string name="email">E-mail</string>
     <string name="password">Senha</string>

@@ -35,14 +35,10 @@ class FormActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        intent.extras?.getSerializable("task")?.let { extra ->
-            val task = extra as Task
+        taskId = intent.getLongExtra("taskId", -1L).takeIf { it > 0 }
 
-            taskId = task.id
-            binding.etTitle.setText(task.title)
-            binding.etDescription.setText(task.description)
-            binding.etDate.setText(task.formatDate())
-            binding.etTime.setText(task.formatTime())
+        taskId?.let { id ->
+            loadTaskDetails(id)
         }
 
         intent.extras?.getString(Intent.EXTRA_TEXT)?.let { text ->
@@ -51,6 +47,29 @@ class FormActivity : AppCompatActivity() {
         }
 
         initComponents()
+    }
+
+    private fun loadTaskDetails(id: Long) {
+        taskService.listDetails(id).observe(this) { response ->
+
+            if (response.error) {
+                showAlert(R.string.load_error)
+                finish()
+                return@observe
+            }
+
+            val task = response.value
+            if (task == null) {
+                showAlert(R.string.load_error)
+                finish()
+                return@observe
+            }
+
+            binding.etTitle.setText(task.title)
+            binding.etDescription.setText(task.description)
+            binding.etDate.setText(task.formatDate())
+            binding.etTime.setText(task.formatTime())
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

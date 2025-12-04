@@ -62,6 +62,9 @@ class FormActivity : AppCompatActivity() {
     }
 
     private fun initComponents() {
+        setupDatePicker()
+        setupTimePicker()
+
         binding.btSave.setOnClickListener {
             binding.layoutTitle.error = null
 
@@ -111,5 +114,51 @@ class FormActivity : AppCompatActivity() {
             .setNeutralButton(android.R.string.ok, null)
             .create()
             .show()
+    }
+
+    private fun setupDatePicker() {
+        binding.etDate.setOnClickListener {
+            val calendar = java.util.Calendar.getInstance()
+            val year = calendar.get(java.util.Calendar.YEAR)
+            val month = calendar.get(java.util.Calendar.MONTH)
+            val day = calendar.get(java.util.Calendar.DAY_OF_MONTH)
+
+            val datePicker = android.app.DatePickerDialog(
+                this,
+                { _, selectedYear, selectedMonth, selectedDay ->
+                    val date = LocalDate.of(selectedYear, selectedMonth + 1, selectedDay)
+                    val formatted = date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+                    binding.etDate.setText(formatted)
+                },
+                year,
+                month,
+                day
+            )
+
+            datePicker.datePicker.minDate = System.currentTimeMillis()
+            datePicker.show()
+        }
+    }
+
+    private fun setupTimePicker() {
+        binding.etTime.setOnClickListener {
+            val calendar = java.util.Calendar.getInstance()
+            val hour = calendar.get(java.util.Calendar.HOUR_OF_DAY)
+            val minute = calendar.get(java.util.Calendar.MINUTE)
+
+            val timePicker = android.app.TimePickerDialog(
+                this,
+                { _, selectedHour, selectedMinute ->
+                    val time = LocalTime.of(selectedHour, selectedMinute)
+                    val formatted = time.format(DateTimeFormatter.ofPattern("HH:mm"))
+                    binding.etTime.setText(formatted)
+                },
+                hour,
+                minute,
+                true // formato 24h
+            )
+
+            timePicker.show()
+        }
     }
 }

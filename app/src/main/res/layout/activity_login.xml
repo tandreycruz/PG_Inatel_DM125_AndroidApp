@@ -65,15 +65,26 @@
         app:layout_constraintStart_toStartOf="@id/layoutEmail"
         app:layout_constraintTop_toBottomOf="@id/btLogin" />
 
+    <Button
+        android:id="@+id/btShowPhoneLogin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Entrar com telefone"
+        app:layout_constraintStart_toStartOf="@id/layoutEmail"
+        app:layout_constraintEnd_toEndOf="@id/layoutEmail"
+        app:layout_constraintTop_toBottomOf="@id/btCreateAccount" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layoutPhone"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:visibility="gone"
         app:boxBackgroundColor="?android:colorBackground"
         app:layout_constraintStart_toStartOf="@id/layoutEmail"
         app:layout_constraintEnd_toEndOf="@id/layoutEmail"
-        app:layout_constraintTop_toBottomOf="@id/btCreateAccount">
+        app:layout_constraintTop_toBottomOf="@id/btShowPhoneLogin">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etPhone"
@@ -89,6 +100,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="Enviar código"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="@id/layoutEmail"
         app:layout_constraintEnd_toEndOf="@id/layoutEmail"
         app:layout_constraintTop_toBottomOf="@id/layoutPhone" />
@@ -98,6 +110,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:visibility="gone"
         app:boxBackgroundColor="?android:colorBackground"
         app:layout_constraintStart_toStartOf="@id/layoutEmail"
         app:layout_constraintEnd_toEndOf="@id/layoutEmail"
@@ -117,6 +130,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="Verificar código"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="@id/layoutEmail"
         app:layout_constraintEnd_toEndOf="@id/layoutEmail"
         app:layout_constraintTop_toBottomOf="@id/layoutCode" />

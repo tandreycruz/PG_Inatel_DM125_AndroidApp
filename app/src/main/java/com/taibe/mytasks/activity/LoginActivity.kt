@@ -3,6 +3,7 @@ package com.taibe.mytasks.activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -56,6 +57,13 @@ class LoginActivity : AppCompatActivity() {
             if (validate()) {
                 createAccount()
             }
+        }
+
+        binding.btShowPhoneLogin.setOnClickListener {
+            binding.layoutPhone.visibility = View.VISIBLE
+            binding.btSendCode.visibility = View.VISIBLE
+            binding.layoutCode.visibility = View.VISIBLE
+            binding.btVerifyCode.visibility = View.VISIBLE
         }
 
         binding.btSendCode.setOnClickListener {

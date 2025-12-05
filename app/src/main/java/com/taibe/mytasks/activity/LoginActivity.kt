@@ -8,16 +8,24 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.firebase.Firebase
+import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.PhoneAuthCredential
+import com.google.firebase.auth.PhoneAuthOptions
+import com.google.firebase.auth.PhoneAuthProvider
 import com.google.firebase.auth.auth
 import com.taibe.mytasks.R
 import com.taibe.mytasks.databinding.ActivityLoginBinding
 import com.taibe.mytasks.extension.hasValue
 import com.taibe.mytasks.extension.value
+import java.util.concurrent.TimeUnit
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var auth: FirebaseAuth
+    private lateinit var callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
+    private var storedVerificationId: String? = null
+    private var resendToken: PhoneAuthProvider.ForceResendingToken? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +39,8 @@ class LoginActivity : AppCompatActivity() {
         if (auth.currentUser != null) {
             startActivity(Intent(this, MainActivity::class.java))
         }
+
+        initPhoneAuthCallbacks()
 
         initComponents()
     }
@@ -46,6 +56,14 @@ class LoginActivity : AppCompatActivity() {
             if (validate()) {
                 createAccount()
             }
+        }
+
+        binding.btSendCode.setOnClickListener {
+            sendCode()
+        }
+
+        binding.btVerifyCode.setOnClickListener {
+            verifyCode()
         }
     }
 
@@ -99,6 +117,71 @@ class LoginActivity : AppCompatActivity() {
                         message,
                         Toast.LENGTH_SHORT,
                     ).show()
+                }
+            }
+    }
+
+    private fun initPhoneAuthCallbacks() {
+        callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+
+            override fun onVerificationCompleted(credential: PhoneAuthCredential) {
+                signInWithCredential(credential)
+            }
+
+            override fun onVerificationFailed(e: FirebaseException) {
+                Toast.makeText(this@LoginActivity, e.message, Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onCodeSent(
+                verificationId: String,
+                token: PhoneAuthProvider.ForceResendingToken
+            ) {
+                super.onCodeSent(verificationId, token)
+                storedVerificationId = verificationId
+                resendToken = token
+                Toast.makeText(this@LoginActivity, "Código enviado!", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun sendCode() {
+        val phone = binding.etPhone.value()
+
+        if (phone.isEmpty()) {
+            Toast.makeText(this, "Informe o telefone", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val options = PhoneAuthOptions.newBuilder(auth)
+            .setPhoneNumber(phone)
+            .setTimeout(60L, TimeUnit.SECONDS)
+            .setActivity(this)
+            .setCallbacks(callbacks)
+            .build()
+
+        PhoneAuthProvider.verifyPhoneNumber(options)
+    }
+
+    private fun verifyCode() {
+        val code = binding.etCode.value()
+
+        if (code.isEmpty()) {
+            Toast.makeText(this, "Informe o código recebido", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val credential = PhoneAuthProvider.getCredential(storedVerificationId!!, code)
+        signInWithCredential(credential)
+    }
+
+    private fun signInWithCredential(credential: PhoneAuthCredential) {
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    startActivity(Intent(this, MainActivity::class.java))
+                    finish()
+                } else {
+                    Toast.makeText(this, task.exception?.message, Toast.LENGTH_SHORT).show()
                 }
             }
     }

@@ -1,8 +1,6 @@
 package com.taibe.mytasks.adapter
 
 import android.content.Context
-import android.graphics.pdf.models.ListItem
-import android.os.Message
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

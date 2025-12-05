@@ -1,42 +1,26 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
 
-<!--    <style name="Base.Theme.MyTasks" parent="Theme.MaterialComponents.DayNight.DarkActionBar">-->
-<!--        <item name="colorPrimary">@color/blue</item>-->
-<!--        <item name="colorOnPrimary">@color/white</item>-->
-<!--        <item name="colorAccent">@color/orange</item>-->
-<!--        <item name="colorSecondary">@color/orange</item>-->
-<!--        <item name="colorOnSecondary">@color/white</item>-->
-<!--        <item name="windowActionBarOverlay">true</item>-->
-<!--    </style>-->
-
     <style name="Base.Theme.MyTasks" parent="Theme.MaterialComponents.DayNight.DarkActionBar.Bridge">
-        <!-- Fundo -->
+
         <item name="android:colorBackground">@color/white</item>
 
-        <!-- Superfícies -->
         <item name="colorSurface">@color/concrete_mid</item>
         <item name="colorOnSurface">@color/text_primary</item>
 
-        <!-- Texto -->
         <item name="android:textColor">@color/text_primary</item>
 
-        <!-- Primary (ActionBar, botões principais) -->
-        <item name="colorPrimary">@color/orange_matte</item>
+        <item name="colorPrimary">@color/orange_terracota</item>
         <item name="colorPrimaryVariant">@color/concrete_light</item>
         <item name="colorOnPrimary">@color/text_primary</item>
 
-        <!-- Secondary (FAB, destaques) -->
-        <item name="colorSecondary">@color/orange_matte</item>
+        <item name="colorSecondary">@color/orange_terracota</item>
         <item name="colorOnSecondary">@color/text_primary</item>
 
-        <!-- StatusBar / NavigationBar -->
         <item name="android:statusBarColor">@color/concrete_dark</item>
         <item name="android:navigationBarColor">@color/concrete_dark</item>
 
-        <!-- Remover sombra pesada da ActionBar -->
         <item name="android:windowContentOverlay">@null</item>
-
 
     </style>
 

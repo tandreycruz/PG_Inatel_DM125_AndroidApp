@@ -1,36 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<resources>-->
-<!--    <color name="blue">#1976D2</color>-->
-<!--    <color name="orange">#F57C00</color>-->
-<!--    <color name="green">#388E3C</color>-->
-<!--    <color name="yellow">#FACC59</color>-->
-<!--    <color name="red">#F44336</color>-->
-<!--    <color name="white">#FFF</color>-->
-<!--    <color name="ic_launcher_background">@color/blue</color>-->
-<!--</resources>-->
-
 <resources>
-    <color name="green">#B7F0B1</color>
-    <color name="blue">#1976D2</color>
-    <color name="red">#E25151</color>
-    <color name="yellow">#FFEFA8</color>
+    <color name="green">#6E8B3D</color>
+    <color name="blue">#2F5F73</color>
+    <color name="red">#B44A3A</color>
+    <color name="yellow">#D9A441</color>
     <color name="white">#FFF</color>
 
-    <!-- Fundo concreto nublado -->
-    <color name="concrete_dark">#2B2B2B</color>     <!-- fundo principal -->
-    <color name="concrete_mid">#3A3A3A</color>      <!-- cards / superfícies -->
-    <color name="concrete_light">#4A4A4A</color>    <!-- bordas / detalhes -->
+    <color name="concrete_dark">#2B2B2B</color>
+    <color name="concrete_mid">#3A3A3A</color>
+    <color name="concrete_light">#4A4A4A</color>
 
-    <!-- Laranja fosco (fosco = menos saturado, mais elegante) -->
-    <color name="orange_matte">#D9822B</color>
+    <color name="orange_douradosuave">#F0A64A</color>
+    <color name="orange_terracota">#CC7F3A</color>
 
-    <!-- Texto -->
     <color name="text_primary">#2B2B2B</color>
     <color name="text_secondary">#4A4A4A</color>
 
-    <!-- Erro (mantido neutro) -->
     <color name="red_error">#E53935</color>
 
-    <color name="ic_launcher_new_background">@color/orange_matte</color>
+    <color name="ic_launcher_new_background">@color/orange_terracota</color>
 
 </resources>

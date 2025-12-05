@@ -18,22 +18,9 @@ class ItemViewHolder(
 
         binding.tvTitle.text = task.title
         binding.tvDate.text = task.formatDateTime(dateFormat)
+        binding.tvDescription.text = task.description
 
         val today = LocalDate.now()
-
-//        val colorRes = when {
-//            task.completed -> R.color.green
-//
-//            task.date == null -> R.color.blue
-//
-//            task.date.isBefore(today) -> R.color.red   // vencida
-//
-//            task.date.isEqual(today) -> R.color.yellow // vence hoje
-//
-//            task.date.isAfter(today) -> R.color.blue   // ainda no prazo
-//
-//            else -> R.color.blue
-//        }
 
         val colorRes = when {
             task.completed -> R.color.green
@@ -49,7 +36,8 @@ class ItemViewHolder(
             else -> R.color.blue
         }
 
-        binding.tvTitle.setBackgroundResource(colorRes)
+        val color = binding.root.context.getColor(colorRes)
+        binding.cardTask.setCardBackgroundColor(color)
 
         binding.root.setOnClickListener {
             listener.onClick(task)

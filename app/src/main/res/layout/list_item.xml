@@ -18,7 +18,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@color/blue"
-            android:textColor="@color/white"
+            android:textColor="@color/concrete_light"
             android:textSize="18sp"
             android:padding="6dp"
             app:layout_constraintEnd_toEndOf="parent"

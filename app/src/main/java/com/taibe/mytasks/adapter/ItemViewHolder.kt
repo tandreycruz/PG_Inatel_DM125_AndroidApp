@@ -21,6 +21,20 @@ class ItemViewHolder(
 
         val today = LocalDate.now()
 
+//        val colorRes = when {
+//            task.completed -> R.color.green
+//
+//            task.date == null -> R.color.blue
+//
+//            task.date.isBefore(today) -> R.color.red   // vencida
+//
+//            task.date.isEqual(today) -> R.color.yellow // vence hoje
+//
+//            task.date.isAfter(today) -> R.color.blue   // ainda no prazo
+//
+//            else -> R.color.blue
+//        }
+
         val colorRes = when {
             task.completed -> R.color.green
 
